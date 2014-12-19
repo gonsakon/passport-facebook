@@ -38,9 +38,9 @@ app.use(passport.session());
 // app.use(app.router);
 FacebookStrategy = require('passport-facebook').Strategy;
 passport.use(new FacebookStrategy({
-        clientID: 1480894322172352,
-        clientSecret: '323c439dd1bfb4cfdc12e0be4a7e4b17',
-        callbackURL: "http://localhost:3000/auth/facebook/callback"
+        clientID: xxxxxx, //設立的FB APP 資訊
+        clientSecret: xxxx, //設立的FB APP 資訊
+        callbackURL: "http://localhost:3000/auth/facebook/callback" //設立的FB callback網址
     },
     function(accessToken, refreshToken, profile, done) {
         alluser.findOne({
@@ -81,13 +81,13 @@ app.get('/auth/facebook/callback',
             req.session.name = req.user.name;
             res.redirect('/');
         }
-});
+    });
 app.get('/', function(req, res) {
-    if(req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         res.render('pages/index', {
             yourname: req.user.name
         });
-    }else{
+    } else {
         res.render('pages/index', {
             yourname: '訪客'
         });
